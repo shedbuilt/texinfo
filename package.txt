@@ -1,0 +1,5 @@
+NAME=texinfo
+VERSION=6.4
+REVISION=1
+SRC=http://ftp.gnu.org/gnu/texinfo/texinfo-6.4.tar.xz
+SRCMD5=2a676c8339efe6ddea0f1cb52e626d15
