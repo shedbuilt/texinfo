@@ -1,12 +1,15 @@
 #!/bin/bash
-case "$SHED_BUILD_MODE" in
-    toolchain)
-        ./configure --prefix=/tools || return 1
-        ;;
-    *)
-        ./configure --prefix=/usr \
-                    --disable-static || return 1
-        ;;
-esac
-make -j $SHED_NUM_JOBS || return 1
-make DESTDIR="$SHED_FAKE_ROOT" install || return 1
+declare -A SHED_PKG_LOCAL_OPTIONS=${SHED_PKG_OPTIONS_ASSOC}
+# Configure
+SHED_PKG_LOCAL_PREFIX='/usr'
+SHED_PKG_LOCAL_STATIC_OPTION='--disable-static'
+if [ -n "${SHED_PKG_LOCAL_OPTIONS[toolchain]}" ]; then
+    SHED_PKG_LOCAL_PREFIX='/tools'
+    SHED_PKG_LOCAL_STATIC_OPTION=''
+fi
+./configure --prefix=${SHED_PKG_LOCAL_PREFIX} \
+            ${SHED_PKG_LOCAL_STATIC_OPTION} &&
+
+# Build and Install
+make -j $SHED_NUMJOBS &&
+make DESTDIR="$SHED_FAKEROOT" install

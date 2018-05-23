@@ -3,3 +3,5 @@ VERSION=6.5
 REVISION=1
 SRC=http://ftp.gnu.org/gnu/texinfo/texinfo-6.5.tar.xz
 SRCMD5=3715197e62e0e07f85860b3d7aab55ed
+OPTIONS=toolchain|bootstrap|release
+DEFAULTS=release
