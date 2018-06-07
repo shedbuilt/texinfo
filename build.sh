@@ -11,5 +11,5 @@ fi
             ${SHED_PKG_LOCAL_STATIC_OPTION} &&
 
 # Build and Install
-make -j $SHED_NUMJOBS &&
-make DESTDIR="$SHED_FAKEROOT" install
+make -j $SHED_NUM_JOBS &&
+make DESTDIR="$SHED_FAKE_ROOT" install
